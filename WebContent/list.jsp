@@ -17,15 +17,13 @@
 				<td>views</td>
 			</tr>
 			<c:forEach items="${list}" var="dto">
-			<tr>
-				<td>${dto.bId}</td>
-				<td>${dto.bName}</td>
-				<td>
-					<c:forEach begin="1" end="${dto.bIndent}">-</c:forEach>
-					<a href="content_view.do?bId=${dto.bId}">${dto.bTitle}</a></td>
-				<td>${dto.bDate}</td>
-				<td>${dto.bHit}</td>
-			</tr>
+				<tr>
+					<td>${dto.getId()}</td>
+					<td>${dto.getWriter()}</td>
+					<td>${dto.getTitle()}</td>
+					<td>${dto.getRDate()}</td>
+					<td>${dto.getViews()}</td>
+				</tr>
 			</c:forEach>
 			<tr>
 				<td colspan="5"> <a href="write_view.do">write article</a> </td>

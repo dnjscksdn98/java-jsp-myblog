@@ -31,7 +31,7 @@ public class ArticleDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "insert into articles values (articles_seq.nextval, ?, ?, ?, 0, articles_seq.currval, 0, 0 )";
+			String query = "insert into articles(id, writer, title, content, views, aGroup, aStep, aIndent) values (articles_seq.nextval, ?, ?, ?, 0, articles_seq.currval, 0, 0)";
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, writer);
 			preparedStatement.setString(2, title);
@@ -57,7 +57,7 @@ public class ArticleDao {
 		
 		try {
 			connection = dataSource.getConnection();
-			String query = "select * from articles order by aGroup desc, aStep asc";
+			String query = "select id, writer, title, content, rdate, views, aGroup, aStep, aIndent from articles order by aGroup desc, aStep asc";
 			preparedStatement = connection.prepareStatement(query);
 			resultSet = preparedStatement.executeQuery();
 			

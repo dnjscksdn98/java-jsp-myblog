@@ -88,4 +88,70 @@ public class ArticleDao {
 		}
 		return dtos;
 	}
+	
+	private void increaseViews(String articleId) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "update articles set views = views + 1 where id = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, articleId);
+			
+			preparedStatement.executeUpdate();
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public ArticleDto detailView(String articleId) {
+		increaseViews(articleId);
+		
+		ArticleDto dto = null;
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "select * from articles where id = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(articleId));
+			resultSet = preparedStatement.executeQuery();
+			
+			if(resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String writer = resultSet.getString("writer");
+				String title = resultSet.getString("title");
+				String content = resultSet.getString("content");
+				Timestamp rdate = resultSet.getTimestamp("rdate");
+				int views = resultSet.getInt("views");
+				int aGroup = resultSet.getInt("aGroup");
+				int aStep = resultSet.getInt("aStep");
+				int aIndent = resultSet.getInt("aIndent");
+				
+				dto = new ArticleDto(id, writer, title, content, rdate, views, aGroup, aStep, aIndent);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dto;
+	}
 }

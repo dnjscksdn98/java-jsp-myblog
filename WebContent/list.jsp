@@ -20,7 +20,7 @@
 				<tr>
 					<td>${dto.getId()}</td>
 					<td>${dto.getWriter()}</td>
-					<td>${dto.getTitle()}</td>
+					<td><a href="detail_view.do?id=${dto.getId()}">${dto.getTitle()}</a></td>
 					<td>${dto.getRDate()}</td>
 					<td>${dto.getViews()}</td>
 				</tr>

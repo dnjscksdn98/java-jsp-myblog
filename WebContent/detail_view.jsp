@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<table width="500" cellpadding="0" cellspacing="0" border="1">
-			<form action="modify.do" method="post">
+			<form action="update.do" method="post">
 				<input type="hidden" name="id" value="${detail_view.getId()}">
 				<tr>
 					<td> # </td>

@@ -154,4 +154,30 @@ public class ArticleDao {
 		}
 		return dto;
 	}
+	
+	public void update(String id, String writer, String title, String content) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "update articles set writer = ?, title = ?, content = ? where id = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, writer);
+			preparedStatement.setString(2, title);
+			preparedStatement.setString(3, content);
+			preparedStatement.setInt(4, Integer.parseInt(id));
+			preparedStatement.executeUpdate();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }

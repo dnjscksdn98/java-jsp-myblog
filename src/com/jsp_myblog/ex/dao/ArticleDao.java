@@ -10,6 +10,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+import com.jsp_myblog.ex.dto.ArticleDto;
+
 
 public class ArticleDao {
 	DataSource dataSource;
@@ -45,5 +47,45 @@ public class ArticleDao {
 				e2.printStackTrace();
 			}
 		}
+	}
+	
+	public ArrayList<ArticleDto> list(){
+		ArrayList<ArticleDto> dtos = new ArrayList<ArticleDto>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "select * from articles order by aGroup desc, aStep asc";
+			preparedStatement = connection.prepareStatement(query);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String writer = resultSet.getString("writer");
+				String title = resultSet.getString("title");
+				String content = resultSet.getString("content");
+				Timestamp rdate = resultSet.getTimestamp("rdate");
+				int views = resultSet.getInt("views");
+				int aGroup = resultSet.getInt("aGroup");
+				int aStep = resultSet.getInt("aStep");
+				int aIndent = resultSet.getInt("aIndent");
+				
+				ArticleDto dto = new ArticleDto(id, writer, title, content, rdate, views, aGroup, aStep, aIndent);
+				dtos.add(dto);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(resultSet != null) resultSet.close();
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dtos;
 	}
 }

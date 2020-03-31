@@ -180,4 +180,27 @@ public class ArticleDao {
 			}
 		}
 	}
+	
+	public void delete(String articleId) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "delete from articles where id = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(articleId));
+			preparedStatement.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }

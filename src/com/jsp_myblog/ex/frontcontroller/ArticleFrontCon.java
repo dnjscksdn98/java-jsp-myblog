@@ -14,6 +14,7 @@ import com.jsp_myblog.ex.command.ArticleWriteCommand;
 import com.jsp_myblog.ex.command.ArticleListCommand;
 import com.jsp_myblog.ex.command.ArticleDetailCommand;
 import com.jsp_myblog.ex.command.ArticleUpdateCommand;
+import com.jsp_myblog.ex.command.ArticleDeleteCommand;
 
 
 @WebServlet("*.do")
@@ -62,6 +63,11 @@ public class ArticleFrontCon extends HttpServlet {
 		}
 		else if(com.contentEquals("/update.do")) {
 			command = new ArticleUpdateCommand();
+			command.execute(request, response);
+			viewPage = "list.do";
+		}
+		else if(com.contentEquals("/delete.do")) {
+			command = new ArticleDeleteCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
 		}

@@ -20,7 +20,7 @@
 				</tr>
 				<tr>
 					<td> writer </td>
-					<td> <input type="text" name="name" value="${detail_view.getWriter()}"></td>
+					<td> <input type="text" name="writer" value="${detail_view.getWriter()}"></td>
 				</tr>
 				<tr>
 					<td> title </td>

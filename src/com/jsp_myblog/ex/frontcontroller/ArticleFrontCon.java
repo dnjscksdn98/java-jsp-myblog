@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.jsp_myblog.ex.command.ArticleCommand;
 import com.jsp_myblog.ex.command.ArticleWriteCommand;
+import com.jsp_myblog.ex.command.ArticleListCommand;
 
 
 @WebServlet("*.do")
@@ -46,6 +47,11 @@ public class ArticleFrontCon extends HttpServlet {
 			command = new ArticleWriteCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
+		}
+		else if(com.contentEquals("/list.do")) {
+			command = new ArticleListCommand();
+			command.execute(request, response);
+			viewPage = "list.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

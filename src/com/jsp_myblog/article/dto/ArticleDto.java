@@ -1,4 +1,4 @@
-package com.jsp_myblog.ex.dto;
+package com.jsp_myblog.article.dto;
 
 import java.sql.Timestamp;
 
@@ -9,23 +9,17 @@ public class ArticleDto {
 	String content;
 	Timestamp rdate;
 	int views;
-	int aGroup;
-	int aStep;
-	int aIndent;
 	
 	public ArticleDto() {
 	}
 	
-	public ArticleDto(int id, String writer, String title, String content, Timestamp rdate, int views, int aGroup, int aStep, int aIndent) {
+	public ArticleDto(int id, String writer, String title, String content, Timestamp rdate, int views) {
 		this.id = id;
 		this.writer = writer;
 		this.title = title;
 		this.content = content;
 		this.rdate = rdate;
 		this.views = views;
-		this.aGroup = aGroup;
-		this.aStep = aStep;
-		this.aIndent = aIndent;
 	}
 
 	public int getId() {
@@ -74,29 +68,5 @@ public class ArticleDto {
 
 	public void setViews(int views) {
 		this.views = views;
-	}
-
-	public int getAGroup() {
-		return this.aGroup;
-	}
-
-	public void setAGroup(int aGroup) {
-		this.aGroup = aGroup;
-	}
-
-	public int getAStep() {
-		return this.aStep;
-	}
-
-	public void setAStep(int aStep) {
-		this.aStep = aStep;
-	}
-
-	public int getAIndent() {
-		return this.aIndent;
-	}
-
-	public void setAIndent(int aIndent) {
-		this.aIndent = aIndent;
 	}
 }

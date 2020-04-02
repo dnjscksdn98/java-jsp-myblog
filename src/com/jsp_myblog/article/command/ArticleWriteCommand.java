@@ -1,9 +1,9 @@
-package com.jsp_myblog.ex.command;
+package com.jsp_myblog.article.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jsp_myblog.ex.dao.ArticleDao;
+import com.jsp_myblog.article.dao.ArticleDao;
 
 
 public class ArticleWriteCommand implements ArticleCommand{

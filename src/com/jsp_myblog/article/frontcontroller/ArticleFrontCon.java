@@ -1,4 +1,4 @@
-package com.jsp_myblog.ex.frontcontroller;
+package com.jsp_myblog.article.frontcontroller;
 
 import java.io.IOException;
 
@@ -9,12 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jsp_myblog.ex.command.ArticleCommand;
-import com.jsp_myblog.ex.command.ArticleWriteCommand;
-import com.jsp_myblog.ex.command.ArticleListCommand;
-import com.jsp_myblog.ex.command.ArticleDetailCommand;
-import com.jsp_myblog.ex.command.ArticleUpdateCommand;
-import com.jsp_myblog.ex.command.ArticleDeleteCommand;
+import com.jsp_myblog.article.command.ArticleCommand;
+import com.jsp_myblog.article.command.ArticleDeleteCommand;
+import com.jsp_myblog.article.command.ArticleDetailCommand;
+import com.jsp_myblog.article.command.ArticleListCommand;
+import com.jsp_myblog.article.command.ArticleUpdateCommand;
+import com.jsp_myblog.article.command.ArticleWriteCommand;
 
 
 @WebServlet("*.do")

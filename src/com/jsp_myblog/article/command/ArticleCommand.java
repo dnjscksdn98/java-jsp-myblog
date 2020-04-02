@@ -1,4 +1,4 @@
-package com.jsp_myblog.ex.command;
+package com.jsp_myblog.article.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -8,6 +8,21 @@
 		<title>Home</title>
 	</head>
 	<body>
+		<h2>Home</h2>
+		<nav>
+			<%
+				if(session.getAttribute("userid") != null) {
+			%>
+					<a href="logout.user">Logout</a>
+			<%
+				}
+				else {
+			%>
+					<a href="login_view.user">Login</a>
+			<%
+				}
+			%>
+		</nav>
 		<table width="500" cellpadding="0" cellspacing="0" border="1">
 			<tr>
 				<td>#</td>

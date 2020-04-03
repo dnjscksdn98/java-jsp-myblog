@@ -14,6 +14,5 @@ public class ArticleDetailCommand implements ArticleCommand {
 		ArticleDto dto = dao.detailView(articleId);
 		
 		request.setAttribute("detail_view", dto);
-		
 	}
 }

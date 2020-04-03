@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.jsp_myblog.article.command.ArticleCommand;
 import com.jsp_myblog.article.command.ArticleDeleteCommand;
@@ -38,18 +39,25 @@ public class ArticleFrontCon extends HttpServlet {
 		
 		String viewPage = null;
 		ArticleCommand command = null;
+		HttpSession session = request.getSession();
 		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
 		if(com.contentEquals("/write_view.do")) {
-			viewPage = "write_view.jsp";
+			if(session.getAttribute("userid") != null) {
+				viewPage = "write_view.jsp";
+			}
+			viewPage = "login_view.user";
 		}
 		else if(com.contentEquals("/write.do")) {
-			command = new ArticleWriteCommand();
-			command.execute(request, response);
-			viewPage = "list.do";
+			if(session.getAttribute("userid") != null) {
+				command = new ArticleWriteCommand();
+				command.execute(request, response);
+				viewPage = "list.do";
+			}
+			viewPage = "login_view.user";
 		}
 		else if(com.contentEquals("/list.do")) {
 			command = new ArticleListCommand();

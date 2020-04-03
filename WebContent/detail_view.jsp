@@ -31,10 +31,10 @@
 					<td> <textarea rows="10" name="content" >${detail_view.getContent()}</textarea></td>
 				</tr>
 				<tr>
-					<td colspan="2"> 
-						<input type="submit" value="update"> &nbsp;&nbsp; 
-						<a href="list.do">articles</a> &nbsp;&nbsp; 
-						<a href="delete.do?id=${detail_view.getId()}">delete</a> &nbsp;&nbsp; 
+					<td colspan="2">
+						<input type="submit" value="update">
+						<a href="list.do">Articles</a>
+						<a href="delete.do?id=${detail_view.getId()}">delete</a>
 						<a href="reply_view.do?id=${detail_view.getId()}">reply</a>
 					</td>
 				</tr>
